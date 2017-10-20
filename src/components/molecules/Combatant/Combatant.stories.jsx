@@ -6,7 +6,7 @@ import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import Combatant from './';
 import { defaultCombatant } from './combatantDescription';
 
-const stories = storiesOf('Storybook Knobs', module);
+const stories = storiesOf('Combatant', module);
 
 // Add the `withKnobs` decorator to add knobs support to your stories.
 // You can also configure `withKnobs` as a global decorator.
