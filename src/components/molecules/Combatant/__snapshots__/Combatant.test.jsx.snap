@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox should shallow render 1`] = `
+<div
+  key="1"
+>
+  <Checkbox
+    checked={false}
+    label={null}
+    name="turnover-1"
+  />
+  - 
+  12
+   - 
+  Harmonious Jade
+</div>
+`;
