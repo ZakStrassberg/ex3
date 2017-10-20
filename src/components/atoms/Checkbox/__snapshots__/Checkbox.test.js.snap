@@ -1,18 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Checkbox should have checked=true when checked 1`] = `
-<input
-  checked={true}
-  name="checkbox"
-  type="checkbox"
-  value="checkbox"
-/>
-`;
-
 exports[`Checkbox should not have checked=true when unchecked 1`] = `
 <input
   checked={false}
   name="checkbox"
+  onClick={[Function]}
   type="checkbox"
   value="checkbox"
 />
@@ -22,6 +14,7 @@ exports[`Checkbox should shallow render 1`] = `
 <input
   checked={false}
   name="checkbox"
+  onClick={[Function]}
   type="checkbox"
   value="checkbox"
 />
