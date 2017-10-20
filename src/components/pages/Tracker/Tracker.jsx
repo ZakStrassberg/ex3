@@ -2,10 +2,14 @@ import { map } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import AddCombatant from '../../molecules/AddCombatant/AddCombatant';
 import Combatant from '../../molecules/Combatant';
 
 const Tracker = ({ combatants }) => (
-  <div>{map(combatants, combatant => <Combatant combatant={combatant} />)}</div>
+  <div>
+    <section>{map(combatants, combatant => <Combatant combatant={combatant} />)}</section>
+    <AddCombatant />
+  </div>
 );
 
 Tracker.propTypes = {
