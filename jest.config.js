@@ -10,4 +10,5 @@ module.exports = {
     '^(store|\\.\\.)\\/actions$': '<rootDir>/private/jest/actionsMock.js',
   },
   setupFiles: ['./private/jest/jestsetup.js'],
+  snapshotSerializers: ['./node_modules/enzyme-to-json/serializer'],
 };

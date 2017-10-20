@@ -23,6 +23,9 @@
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.0.0",
+    "@storybook/addon-info": "^3.2.12",
+    "@storybook/addon-knobs": "^3.2.12",
+    "@storybook/addon-notes": "^3.2.12",
     "@storybook/react": "^3.0.0",
     "@webpack-blocks/dev-server2": "^0.4.0",
     "@webpack-blocks/webpack2": "^0.4.0",
@@ -41,6 +44,7 @@
     "delay": "^2.0.0",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.0.2",
+    "enzyme-to-json": "^3.1.4",
     "eslint": "^4.9.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-import-resolver-webpack": "^0.8.1",
