@@ -1,10 +1,8 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
-import React from 'react'
+import React from 'react';
 
-const HomePage = () => {
-  return (
-    <div>Hello World</div>
-  )
-}
+const HomePage = () => (
+  <div>Hello World</div>
+);
 
-export default HomePage
+export default HomePage;
