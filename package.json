@@ -10,7 +10,7 @@
     "test": "jest --config ./jest.config.js",
     "coverage": "npm test -- --coverage",
     "postcoverage": "opn coverage/lcov-report/index.html",
-    "lint": "eslint src src-example private webpack.config.js",
+    "lint": "eslint src private webpack.config.js",
     "storybook": "start-storybook -p 9001 -c private/storybook",
     "storybook:example": "npm run env:example -- npm run storybook",
     "dev": "npm run env:dev -- webpack-dev-server",
