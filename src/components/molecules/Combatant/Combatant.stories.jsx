@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
 import Combatant from './';
-import { defaultCombatant } from './combatantDescription';
+import defaultCombatant from './combatantDescription';
 
 const stories = storiesOf('Combatant', module);
 

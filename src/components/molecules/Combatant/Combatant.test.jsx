@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { defaultCombatant } from './combatantDescription';
+import defaultCombatant from './combatantDescription';
 import Combatant from './';
 
 describe('Checkbox', () => {
