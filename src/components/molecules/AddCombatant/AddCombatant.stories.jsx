@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 
 import AddCombatant from './AddCombatant';
 
-storiesOf('Tracker.Molecule.AddCombatant', module)
+storiesOf('Tracker.molecule.AddCombatant', module)
   .add('default', () => (
     <AddCombatant />
   ));
