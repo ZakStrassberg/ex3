@@ -1,169 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Checkbox should have checked=true when checked 1`] = `
-ShallowWrapper {
-  "length": 1,
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Checkbox
-    checked={true}
-    label={null}
-    name="checkbox"
-  />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": null,
-    "nodeType": "host",
-    "props": Object {
-      "checked": true,
-      "name": "checkbox",
-      "type": "checkbox",
-      "value": "checkbox",
-    },
-    "ref": null,
-    "rendered": null,
-    "type": "input",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": null,
-      "nodeType": "host",
-      "props": Object {
-        "checked": true,
-        "name": "checkbox",
-        "type": "checkbox",
-        "value": "checkbox",
-      },
-      "ref": null,
-      "rendered": null,
-      "type": "input",
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-      },
-    },
-  },
-}
+<input
+  checked={true}
+  name="checkbox"
+  type="checkbox"
+  value="checkbox"
+/>
 `;
 
 exports[`Checkbox should not have checked=true when unchecked 1`] = `
-ShallowWrapper {
-  "length": 1,
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Checkbox
-    checked={false}
-    label={null}
-    name="checkbox"
-  />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": null,
-    "nodeType": "host",
-    "props": Object {
-      "checked": false,
-      "name": "checkbox",
-      "type": "checkbox",
-      "value": "checkbox",
-    },
-    "ref": null,
-    "rendered": null,
-    "type": "input",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": null,
-      "nodeType": "host",
-      "props": Object {
-        "checked": false,
-        "name": "checkbox",
-        "type": "checkbox",
-        "value": "checkbox",
-      },
-      "ref": null,
-      "rendered": null,
-      "type": "input",
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-      },
-    },
-  },
-}
+<input
+  checked={false}
+  name="checkbox"
+  type="checkbox"
+  value="checkbox"
+/>
 `;
 
 exports[`Checkbox should shallow render 1`] = `
-ShallowWrapper {
-  "length": 1,
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Checkbox
-    checked={false}
-    label={null}
-    name="checkbox"
-  />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": null,
-    "nodeType": "host",
-    "props": Object {
-      "checked": false,
-      "name": "checkbox",
-      "type": "checkbox",
-      "value": "checkbox",
-    },
-    "ref": null,
-    "rendered": null,
-    "type": "input",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": null,
-      "nodeType": "host",
-      "props": Object {
-        "checked": false,
-        "name": "checkbox",
-        "type": "checkbox",
-        "value": "checkbox",
-      },
-      "ref": null,
-      "rendered": null,
-      "type": "input",
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-      },
-    },
-  },
-}
+<input
+  checked={false}
+  name="checkbox"
+  type="checkbox"
+  value="checkbox"
+/>
 `;

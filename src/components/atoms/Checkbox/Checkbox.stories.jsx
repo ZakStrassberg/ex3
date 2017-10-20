@@ -3,20 +3,27 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Checkbox from './';
 
+const defaultProps = {
+  onClick: action('clicked'),
+  name: "checkbox",
+};
+
+console.log('hi');
+
 storiesOf('Checkbox', module)
   .add('without label', () => (
     <div>
-      <Checkbox name="checkbox" />
-      <Checkbox name="checkbox" checked />
+      <Checkbox {...defaultProps} />
+      <Checkbox {...defaultProps} checked />
     </div>
   ))
   .add('with labels', () => (
     <div>
       <div>
-        <Checkbox name="checkbox" label="Unchecked" />
+        <Checkbox {...defaultProps} label="Unchecked" />
       </div>
       <div>
-        <Checkbox name="checkbox" label="Checked" checked />
+        <Checkbox {...defaultProps} label="Checked" checked />
       </div>
     </div>
   ));
