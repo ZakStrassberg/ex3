@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Button from '../../../../src-example/components/atoms/Button';
+import Button from '../../atoms/Button/Button';
 import Field from '../Field/Field';
 
 export default class AddCombatant extends Component {
@@ -37,7 +37,7 @@ export default class AddCombatant extends Component {
           value={this.state.name}
           onChange={this.handleChange('initiative')}
         />
-        <Button onClick={this.handleAddCombatant} />
+        <Button onClick={this.handleAddCombatant} text="Add Combatant" />
       </form>
     );
   }
