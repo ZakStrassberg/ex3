@@ -1,23 +1,36 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { noop } from 'lodash';
+import PropTypes from 'prop-types';
+import React from 'react';
+
+import { StyledCheckbox } from '../../atoms/Checkbox';
+import { StyledLabel } from '../../atoms/Label';
+import { StyledTextarea } from '../../atoms/Textarea';
+import TextInput, { StyledNumberInput } from '../../atoms/Input';
 
 const Field = ({ type, label, name, ...inputProps }) => {
-  let El = <input type={type} {...inputProps} name={name} />;
+  let El;
   switch (type) {
     case 'textarea':
-      El = <textarea {...inputProps} name={name} />;
+      El = StyledTextarea;
       break;
+    case 'Number':
+      El = StyledNumberInput;
+      break;
+    case 'Checkbox':
+      El = StyledCheckbox;
+      break;
+    case 'text':
     default:
+      El = TextInput;
       break;
   }
   return label ? (
-    <label htmlFor={name}>
+    <StyledLabel htmlFor={name}>
       <span>{label}</span>
-      {El}
-    </label>
+      <El {...{ ...inputProps, name }} />
+    </StyledLabel>
   ) : (
-    El
+    <El {...{ ...inputProps, name }} />
   );
 };
 
