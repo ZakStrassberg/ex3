@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { StyledButton } from '../../atoms/Button';
-import Field from '../Field/Field';
+import Field from '../Field';
 
 export default class AddCombatant extends Component {
   static propTypes = {};
@@ -17,7 +17,8 @@ export default class AddCombatant extends Component {
   handleChange = field => ({ target: { value } }) =>
     this.setState({ [field]: field === 'initiative' ? Number(value) : value });
 
-  handleAddCombatant = () => {
+  handleAddCombatant = (e) => {
+    e.preventDefault();
     console.log(this.state);
   };
 
