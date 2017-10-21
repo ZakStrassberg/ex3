@@ -8,6 +8,6 @@ export const StyledInput = styled.input`
   text-align: center;
 `;
 
-export const StyledCheckbox = styled.input.attrs({
-  type: 'checkbox',
-})``;
+export const StyledNumberInput = styled(StyledInput).attrs({ type: 'number' });
+
+export default StyledInput;
