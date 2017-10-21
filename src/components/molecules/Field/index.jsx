@@ -13,7 +13,7 @@ const Field = ({ type, label, name, ...inputProps }) => {
     case 'textarea':
       El = StyledTextarea;
       break;
-    case 'Number':
+    case 'number':
       El = StyledNumberInput;
       break;
     case 'Checkbox':
