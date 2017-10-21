@@ -2,18 +2,27 @@ import { map } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import AddCombatant from '../../molecules/AddCombatant/AddCombatant';
+import AddCombatant from '../../../containers/AddCombatant';
 import Combatant from '../../molecules/Combatant';
 
-const Tracker = ({ combatants }) => (
+const Tracker = ({ combatants, dispatchUpdateCombatant }) => (
   <div>
-    <section>{map(combatants, combatant => <Combatant combatant={combatant} />)}</section>
+    <section>
+      {map(combatants, combatant => (
+        <Combatant
+          key={combatant.id}
+          combatant={combatant}
+          onChange={dispatchUpdateCombatant}
+        />
+      ))}
+    </section>
     <AddCombatant />
   </div>
 );
 
 Tracker.propTypes = {
-  combatants: PropTypes.arrayOf(Combatant.propTypes.combatant),
+  combatants: PropTypes.arrayOf(Combatant.propTypes.combatant).isRequired,
+  dispatchUpdateCombatant: PropTypes.func.isRequired,
 };
 
 export default Tracker;
