@@ -42,13 +42,22 @@ export default class Combatant extends Component {
   handleChange = field => ({ target: { value } }) => {
     switch (field) {
       case 'initiative':
-        this.props.onChange(field, Number(value));
+        this.props.onChange({
+          ...this.props.combatant,
+          [field]: Number(value),
+        });
         break;
       case 'turnOver':
-        this.props.onChange(field, !this.props.combatant.turnOver);
+        this.props.onChange({
+          ...this.props.combatant,
+          [field]: !this.props.combatant.turnOver,
+        });
         break;
       default:
-        this.props.onChange(field, value);
+        this.props.onChange({
+          ...this.props.combatant,
+          [field]: value,
+        });
         break;
     }
   };
