@@ -1,15 +1,14 @@
 import 'core-js/es6/map';
 import 'core-js/es6/set';
 
-import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { injectGlobal, ThemeProvider } from 'styled-components';
+import React from 'react';
 
-import { HomePage } from 'components';
-
-// https://github.com/diegohaz/arc/wiki/Styling
+import Tracker from '../containers/Tracker';
 import theme from './themes/default';
 
+// eslint-disable-next-line no-unused-expressions
 injectGlobal`
   body {
     margin: 0;
@@ -19,7 +18,7 @@ injectGlobal`
 const App = () => (
   <ThemeProvider theme={theme}>
     <Switch>
-      <Route path="/" component={HomePage} exact />
+      <Route path="/" component={Tracker} exact />
     </Switch>
   </ThemeProvider>
 );
