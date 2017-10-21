@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import { StyledInput, StyledCheckbox } from '../../atoms/Input';
+import { StyledCheckbox } from '../../atoms/Checkbox';
+import { StyledInput } from '../../atoms/Input';
 
 const CombatantWrapper = styled.article`
   display: flex;

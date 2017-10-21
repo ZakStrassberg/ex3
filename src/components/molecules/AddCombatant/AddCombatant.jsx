@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Button from '../../atoms/Button/Button';
+import { StyledButton } from '../../atoms/Button';
 import Field from '../Field/Field';
 
 export default class AddCombatant extends Component {
@@ -8,14 +8,15 @@ export default class AddCombatant extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       name: '',
       initiative: 0,
     };
   }
 
-  handleChange = field => value => this.setState({ [field]: value });
+  handleChange = field => ({ target: { value } }) =>
+    this.setState({ [field]: field === 'initiative' ? Number(value) : value });
+
   handleAddCombatant = () => {
     console.log(this.state);
   };
@@ -34,10 +35,10 @@ export default class AddCombatant extends Component {
           name="initiative"
           label="Initiative"
           type="number"
-          value={this.state.name}
+          value={this.state.initiative}
           onChange={this.handleChange('initiative')}
         />
-        <Button onClick={this.handleAddCombatant} text="Add Combatant" />
+        <StyledButton onClick={this.handleAddCombatant}>Add Combatant</StyledButton>
       </form>
     );
   }
