@@ -1,10 +1,13 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import { StyledButton } from '../../atoms/Button';
 import Field from '../Field';
 
 export default class AddCombatant extends Component {
-  static propTypes = {};
+  static propTypes = {
+    sendAddCombatantRequest: PropTypes.func.isRequired,
+  };
 
   constructor(props) {
     super(props);
@@ -19,7 +22,7 @@ export default class AddCombatant extends Component {
 
   handleAddCombatant = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    this.props.sendAddCombatantRequest(this.state.name, this.state.initiative);
   };
 
   render() {
