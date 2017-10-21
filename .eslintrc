@@ -40,5 +40,8 @@
     # "react/forbid-prop-types": 0,
     # "react/no-unused-prop-types": 0,
     "react/jsx-filename-extension": [2, {"extensions": [".js", ".jsx"]}],
+
+    # new
+    "object-curly-newline": [2, { "multiline": true, "consistent": true }],
   }
 }
