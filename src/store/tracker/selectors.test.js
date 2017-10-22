@@ -1,6 +1,7 @@
 import { noop, omit } from 'lodash';
 
 import {
+  emptyState,
   getAllCombatants,
   getCombatant,
   getCombatantsById,
@@ -40,13 +41,36 @@ test('initialState', () => {
       },
       2: {
         onChange: noop,
+        turnOver: false,
         id: 2,
+        name: 'Lotus',
+        initiative: 12,
+      },
+      3: {
+        onChange: noop,
+        turnOver: false,
+        id: 3,
+        name: 'Dread Scarlet',
+        initiative: 6,
+      },
+      4: {
+        onChange: noop,
+        id: 4,
         name: 'Peleps Deled',
         initiative: -3,
-        turnOver: true,
+        turnOver: false,
       },
     },
-    allCombatants: [1, 2],
+    allCombatants: [1, 2, 3, 4],
+    turn: 0,
+  });
+});
+
+test('emptyState', () => {
+  expect(emptyState).toEqual({
+    combatantsById: {},
+    allCombatants: [],
+    turn: 0,
   });
 });
 
@@ -63,7 +87,7 @@ test('initialCombatantState', () => {
 describe('getCombatant', () => {
   it('should get initialCombatantState when not passed store or given incorrect key', () => {
     expect(omit(getCombatant(), 'id')).toEqual(omit(initialCombatantState(), 'id'));
-    expect(omit(getCombatant(undefined, 3), 'id')).toEqual(omit(initialCombatantState(), 'id'));
+    expect(omit(getCombatant(undefined, 999), 'id')).toEqual(omit(initialCombatantState(), 'id'));
   });
   it('should find Harmonious Jade when passed altState and combatantId 3', () => {
     expect(getCombatant(altState, 3)).toBe(altState.combatantsById[3]);

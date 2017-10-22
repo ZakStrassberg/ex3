@@ -1,11 +1,18 @@
 import { combineReducers } from 'redux';
-import { omit, without } from 'lodash';
+import { omit, without, mapValues, get } from 'lodash';
 
-import { ADD_COMBATANT, REMOVE_COMBATANT } from './actions';
+import {
+  ADD_COMBATANT,
+  END_TURN,
+  REMOVE_COMBATANT,
+  SORT_COMBATANTS,
+  UPDATE_COMBATANT,
+} from './actions';
 import { initialState } from './selectors';
 
 const combatantsById = (state = initialState.combatantsById, action) => {
   switch (action.type) {
+    case UPDATE_COMBATANT:
     case ADD_COMBATANT: {
       const { payload: { combatant }, meta: { id } } = action;
       return {
@@ -16,6 +23,12 @@ const combatantsById = (state = initialState.combatantsById, action) => {
     case REMOVE_COMBATANT: {
       const { meta: { id } } = action;
       return omit(state, { id });
+    }
+    case END_TURN: {
+      return mapValues(state, c => ({
+        ...c,
+        turnOver: false,
+      }));
     }
     default:
       return state;
@@ -32,6 +45,18 @@ const allCombatants = (state = initialState.allCombatants, action) => {
       const { meta: { id } } = action;
       return without(state, id);
     }
+    case SORT_COMBATANTS: {
+      return get(action, 'payload.combatantIdsSortedByInitiative', state);
+    }
+    default:
+      return state;
+  }
+};
+
+const turn = (state = initialState.turn, action) => {
+  switch (action.type) {
+    case END_TURN:
+      return Number(state) + 1;
     default:
       return state;
   }
@@ -40,4 +65,5 @@ const allCombatants = (state = initialState.allCombatants, action) => {
 export default combineReducers({
   combatantsById,
   allCombatants,
+  turn,
 });

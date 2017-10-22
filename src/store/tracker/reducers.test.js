@@ -1,8 +1,8 @@
-import { omit, without } from 'lodash';
+import { omit, without, mapValues, map, orderBy } from 'lodash';
 
-import { ADD_COMBATANT, REMOVE_COMBATANT, action } from './actions';
+import { ADD_COMBATANT, END_TURN, REMOVE_COMBATANT, SORT_COMBATANTS, action } from './actions';
 import { initialCombatantState, initialState, emptyState } from './selectors';
-import { mergeWithArrays } from '../../util';
+import { mergeWithArrays } from '../../services/util';
 import reducer from './reducer';
 
 const addCombatantToState = (modifiedState, combatant) =>
@@ -17,20 +17,24 @@ describe('Tracker reducer', () => {
       const combatant = initialCombatantState();
       expect(addCombatantToState(initialState, combatant))
         // comment for line length
-        .toEqual(mergeWithArrays(initialState, {
-          combatantsById: { [combatant.id]: combatant },
-          allCombatants: [combatant.id],
-        }));
+        .toEqual(
+          mergeWithArrays(initialState, {
+            combatantsById: { [combatant.id]: combatant },
+            allCombatants: [combatant.id],
+          })
+        );
     });
 
     it('adds a new combatant to an empty state', () => {
       const combatant = initialCombatantState();
       expect(reducer(emptyState, action(ADD_COMBATANT, { combatant }, { id: combatant.id })))
         // comment to keep line breaks
-        .toEqual(mergeWithArrays(emptyState, {
-          combatantsById: { [combatant.id]: combatant },
-          allCombatants: [combatant.id],
-        }));
+        .toEqual(
+          mergeWithArrays(emptyState, {
+            combatantsById: { [combatant.id]: combatant },
+            allCombatants: [combatant.id],
+          })
+        );
     });
 
     it('adds a new combatant to a modified state', () => {
@@ -38,21 +42,27 @@ describe('Tracker reducer', () => {
       const combatant1 = initialCombatantState();
       expect(addCombatantToState(modifiedState, combatant1))
         // comment to keep line breaks
-        .toEqual(mergeWithArrays(emptyState, {
-          combatantsById: { [combatant1.id]: combatant1 },
-          allCombatants: [combatant1.id],
-        }));
+        .toEqual(
+          mergeWithArrays(emptyState, {
+            combatantsById: { [combatant1.id]: combatant1 },
+            allCombatants: [combatant1.id],
+          })
+        );
 
       const combatant2 = initialCombatantState();
-      expect(reducer(
-        modifiedState,
-        action(ADD_COMBATANT, { combatant: combatant2 }, { id: combatant2.id })
-      ))
+      expect(
+        reducer(
+          modifiedState,
+          action(ADD_COMBATANT, { combatant: combatant2 }, { id: combatant2.id })
+        )
+      )
         // comment to keep line breaks
-        .toEqual(mergeWithArrays(modifiedState, {
-          combatantsById: { [combatant2.id]: combatant2 },
-          allCombatants: [combatant2.id],
-        }));
+        .toEqual(
+          mergeWithArrays(modifiedState, {
+            combatantsById: { [combatant2.id]: combatant2 },
+            allCombatants: [combatant2.id],
+          })
+        );
     });
   });
 
@@ -62,12 +72,49 @@ describe('Tracker reducer', () => {
       expect(reducer(initialState, action(REMOVE_COMBATANT, {}, { id }))).toEqual({
         combatantsById: omit(initialState.combatantsById, { id }),
         allCombatants: without(initialState.allCombatants, id),
+        turn: 0,
       });
     });
 
     it("should fail gracefully when attempting to remove combatant that doesn't exist", () => {
       const id = 999;
       expect(reducer(initialState, action(REMOVE_COMBATANT, {}, { id }))).toEqual(initialState);
+    });
+  });
+
+  describe('END_TURN', () => {
+    it('advances turn number', () => {
+      expect(reducer(initialState, action(END_TURN))).toEqual({
+        ...initialState,
+        turn: initialState.turn + 1,
+      });
+    });
+
+    it('sets turnOver of all characters to false', () => {
+      const endOfTurnCombatants = mapValues(initialState.combatantsById, c => ({
+        ...c,
+        turnOver: true,
+      }));
+      expect(
+        reducer({ ...initialState, combatantsById: endOfTurnCombatants }, action(END_TURN))
+      ).toEqual({ ...initialState, turn: initialState.turn + 1 });
+    });
+  });
+
+  describe('SORT_COMBATANTS', () => {
+    it('sorts combatants by initiative', () => {
+      const unsortedState = {
+        ...initialState,
+        allCombatants: map(orderBy(initialState.combatantsById, 'name', 'desc'), ({ id }) => id),
+      };
+      expect(
+        reducer(
+          unsortedState,
+          action(SORT_COMBATANTS, {
+            combatantIdsSortedByInitiative: initialState.allCombatants,
+          })
+        )
+      ).toEqual(initialState);
     });
   });
 });

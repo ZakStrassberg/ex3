@@ -26,29 +26,34 @@ export const initialCombatantState = ({
 });
 
 export const defaultCombatants = [
-  {
-    ...initialCombatantState(),
-    id: 1,
+  initialCombatantState({
     name: 'Harmonious Jade',
     initiative: 12,
-  },
-  {
-    ...initialCombatantState(),
-    id: 2,
+  }),
+  initialCombatantState({
+    name: 'Lotus',
+    initiative: 12,
+  }),
+  initialCombatantState({
+    name: 'Dread Scarlet',
+    initiative: 6,
+  }),
+  initialCombatantState({
     name: 'Peleps Deled',
     initiative: -3,
-    turnOver: true,
-  },
+  }),
 ];
 
 export const initialState = {
   combatantsById: keyBy(defaultCombatants, 'id'),
   allCombatants: map(defaultCombatants, ({ id }) => id),
+  turn: 0,
 };
 
 export const emptyState = {
   combatantsById: {},
   allCombatants: [],
+  turn: 0,
 };
 
 export const getCombatantsById = (state = initialState) =>
