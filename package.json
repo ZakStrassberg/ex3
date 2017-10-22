@@ -19,7 +19,8 @@
     "build:copy": "copyfiles -u 1 public/* public/**/* dist",
     "prebuild": "npm run build:clean && npm run build:copy",
     "build": "npm run env:prod -- webpack",
-    "build:example": "npm run env:example -- npm run build"
+    "build:example": "npm run env:example -- npm run build",
+    "postinstall": "yarn install"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.0.0",
