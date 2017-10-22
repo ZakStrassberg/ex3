@@ -91,5 +91,8 @@
     "styled-tools": "^0.2.2",
     "validator": "^9.0.0",
     "whatwg-fetch": "^2.0.2"
+  },
+  "engines": {
+    "yarn": "^1.0.0"
   }
 }
