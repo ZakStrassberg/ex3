@@ -1,4 +1,4 @@
-import { random, times, flatMapDeep, reduce, every, get } from 'lodash';
+import { random, times, flatMapDeep, reduce, every, get, map } from 'lodash';
 
 export default class Roll {
   constructor(config = {}) {
@@ -37,7 +37,7 @@ export default class Roll {
     return reduce(
       roll,
       // eslint-disable-next-line no-nested-ternary
-      (sum, d) => (sum + this.isSuccess(d, config) ? (this.isDoubled(d, config) ? 2 : 1) : 0),
+      (sum, d) => sum + (this.isSuccess(d, config) ? (this.isDoubled(d, config) ? 2 : 1) : 0),
       config.autosuccesses
     );
   }
