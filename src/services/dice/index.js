@@ -22,8 +22,8 @@ export default class Roll {
     return random(1, 10);
   }
 
-  rollNDice(config = this.config) {
-    return times(config.dice, Roll.d10);
+  static rollNDice(dice) {
+    return times(dice, Roll.d10);
   }
 
   reroll(roll, config = this.config) {
@@ -53,9 +53,18 @@ export default class Roll {
     return config.double.has(d);
   }
 
-  roll() {
-    const initialRoll = this.rollNDice();
-    const roll = this.reroll(initialRoll);
+  /**
+ * Rolls based on config
+ * @param  {Object} [config=this.config] Config item. Defaults to this.config
+ * @return {Object}                      Returns an object representing the roll
+ *          initialRoll                   roll before rerolls
+ *          roll                          roll after rerolls
+ *          successes                     number of successes scored
+ *          htmlRoll                      roll marked up in html
+ */
+  roll(config = this.config) {
+    const initialRoll = Roll.rollNDice(config.dice);
+    const roll = this.reroll(initialRoll, config);
     return {
       initialRoll,
       roll,
