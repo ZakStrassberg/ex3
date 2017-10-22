@@ -1,11 +1,17 @@
 import { noop } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
+import styled from 'styled-components';
 
+import { Caption } from '../../atoms/Typography';
 import { StyledCheckbox } from '../../atoms/Checkbox';
 import { StyledLabel } from '../../atoms/Label';
 import { StyledTextarea } from '../../atoms/Textarea';
 import TextInput, { StyledNumberInput } from '../../atoms/Input';
+
+const InitiativeInput = styled(StyledNumberInput)`
+  width: 45px;
+`;
 
 const Field = ({ type, label, name, ...inputProps }) => {
   let El;
@@ -14,7 +20,7 @@ const Field = ({ type, label, name, ...inputProps }) => {
       El = StyledTextarea;
       break;
     case 'number':
-      El = StyledNumberInput;
+      El = name === 'initiative' ? InitiativeInput : StyledNumberInput;
       break;
     case 'Checkbox':
       El = StyledCheckbox;
@@ -26,7 +32,7 @@ const Field = ({ type, label, name, ...inputProps }) => {
   }
   return label ? (
     <StyledLabel htmlFor={name}>
-      <span>{label}</span>
+      <Caption>{label}</Caption>
       <El {...{ ...inputProps, name }} />
     </StyledLabel>
   ) : (
