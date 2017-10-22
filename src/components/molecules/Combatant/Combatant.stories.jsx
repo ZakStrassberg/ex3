@@ -4,8 +4,10 @@ import React, { PureComponent } from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
+import { defaultCombatants } from '../../../store/tracker/selectors';
 import Combatant from './';
-import defaultCombatant from './combatantDescription';
+
+const defaultCombatant = defaultCombatants[0];
 
 const stories = storiesOf('Combatant', module);
 
@@ -25,7 +27,7 @@ class CombatantWrapper extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      ...defaultCombatant,
+      ...defaultCombatants[1],
     };
   }
   componentDidMount() {

@@ -4,6 +4,21 @@ import React, { Component } from 'react';
 import { StyledButton } from '../../atoms/Button';
 import Field from '../Field';
 
+import styled from 'styled-components';
+
+const AddCombatantForm = styled.form`
+  display: flex;
+  justify-content: space-between;
+  > * {
+    flex: 0 0 auto;
+  }
+`;
+
+const initialState = {
+  name: '',
+  initiative: 0,
+};
+
 export default class AddCombatant extends Component {
   static propTypes = {
     sendAddCombatantRequest: PropTypes.func.isRequired,
@@ -12,8 +27,7 @@ export default class AddCombatant extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      initiative: 0,
+      ...initialState,
     };
   }
 
@@ -23,11 +37,12 @@ export default class AddCombatant extends Component {
   handleAddCombatant = (e) => {
     e.preventDefault();
     this.props.sendAddCombatantRequest(this.state.name, this.state.initiative);
+    this.setState({ ...initialState });
   };
 
   render() {
     return (
-      <form onSubmit={this.handleAddCombatant}>
+      <AddCombatantForm onSubmit={this.handleAddCombatant}>
         <Field
           name="name"
           label="Name"
@@ -43,7 +58,7 @@ export default class AddCombatant extends Component {
           onChange={this.handleChange('initiative')}
         />
         <StyledButton onClick={this.handleAddCombatant}>Add Combatant</StyledButton>
-      </form>
+      </AddCombatantForm>
     );
   }
 }
