@@ -8,6 +8,13 @@ export const END_TURN = 'END_TURN';
 export const SORT_COMBATANTS = 'SORT_COMBATANTS';
 
 // ACTION CREATORS
+/**
+ * Generic action creator
+ * @param  {[type]} type         Action type to be dispatched
+ * @param  {Object} [payload={}] Payload to be sent with action
+ * @param  {Object} [meta={}]    Meta details about action
+ * @return {Object}              Returns object to be dispatched
+ */
 export const action = (type, payload = {}, meta = {}) => ({
   type,
   payload,
