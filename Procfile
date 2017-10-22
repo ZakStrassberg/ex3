@@ -1,1 +1,1 @@
-web: echo starting on $PORT && npm run storybook -- -p $PORT
+web: yarn run storybook -p $PORT
