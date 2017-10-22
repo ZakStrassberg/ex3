@@ -43,5 +43,6 @@
 
     # new
     "object-curly-newline": [2, { "multiline": true, "consistent": true }],
+    "function-paren-newline": ["error", "consistent"],
   }
 }
