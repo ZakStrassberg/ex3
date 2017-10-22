@@ -8,7 +8,7 @@ export const StyledInput = styled.input`
   text-align: center;
 `;
 
-export const StyledNumberInput = styled(StyledInput).attrs({
+export const NumberInput = styled(StyledInput).attrs({
   type: 'number',
 })``;
 

@@ -7,9 +7,9 @@ import { Caption } from '../../atoms/Typography';
 import { StyledCheckbox } from '../../atoms/Checkbox';
 import { StyledLabel } from '../../atoms/Label';
 import { StyledTextarea } from '../../atoms/Textarea';
-import TextInput, { StyledNumberInput } from '../../atoms/Input';
+import TextInput, { NumberInput } from '../../atoms/Input';
 
-const InitiativeInput = styled(StyledNumberInput)`
+const InitiativeInput = styled(NumberInput)`
   width: 45px;
 `;
 
@@ -20,7 +20,7 @@ const Field = ({ type, label, name, ...inputProps }) => {
       El = StyledTextarea;
       break;
     case 'number':
-      El = name === 'initiative' ? InitiativeInput : StyledNumberInput;
+      El = name === 'initiative' ? InitiativeInput : NumberInput;
       break;
     case 'Checkbox':
       El = StyledCheckbox;
