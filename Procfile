@@ -1,1 +1,1 @@
-web: yarn install && yarn run storybook -- -p 80
+web: yarn install && yarn run storybook -- -p 3000
