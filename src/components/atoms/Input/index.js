@@ -12,4 +12,6 @@ export const NumberInput = styled(StyledInput).attrs({
   type: 'number',
 })``;
 
+export const RangeInput = styled.input.attrs({ type: 'range' })``;
+
 export default StyledInput;
