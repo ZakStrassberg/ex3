@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { Caption } from '../../atoms/Typography';
 import { defaultCombatants } from '../../../store/tracker/selectors';
 import Combatant from '../Combatant';
+import DiceRoller from '../DiceRoller';
 
 const ModalWrapper = styled.div`
   position: absolute;
@@ -44,6 +45,10 @@ const Defender = styled(FlexDiv)`
 const Name = styled.div`
   font-size: 1.5rem;
 `;
+const Defense = styled.div``;
+const Evasion = styled(Defense)``;
+const Parry = styled(Defense)``;
+
 const Initiative = styled.div``;
 export default class AttackModal extends Component {
   static propTypes = {
@@ -71,6 +76,18 @@ export default class AttackModal extends Component {
         <Name className="name">{name}</Name>
         <Caption>Initiative</Caption>
         <Initiative>{initiative}</Initiative>
+        {isAttacker ? (
+          <section>
+            <Caption>Attack</Caption>
+            <DiceRoller />
+          </section>
+        ) : (
+          <section>
+            <Caption>Defenses</Caption>
+            <Evasion>Evasion: 4</Evasion>
+            <Parry>Parry: 3</Parry>
+          </section>
+        )}
       </El>
     );
   };
