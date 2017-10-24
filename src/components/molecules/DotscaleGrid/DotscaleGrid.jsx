@@ -18,7 +18,7 @@ const Dotscale = styled(UnstyledDotscale)`
 
 export default class DotscaleGrid extends PureComponent {
   static propTypes = {
-    items: PropTypes.arrayOf(Dotscale.propTypes).isRequired,
+    items: PropTypes.arrayOf(PropTypes.shape(Dotscale.propTypes)).isRequired,
     label: PropTypes.string,
     displayLabel: PropTypes.bool,
     columns: PropTypes.number,
