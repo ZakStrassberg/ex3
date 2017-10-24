@@ -2,11 +2,11 @@ import React from 'react';
 
 import { storiesOf } from '@storybook/react';
 
-import Textarea from './Textarea';
 import Button from './Button';
 import Checkbox from './Checkbox';
 import Input from './Input';
 import Label from './Label';
+import Textarea from './Textarea';
 
 storiesOf('Atoms', module)
   .add('input', () => (
