@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { Caption } from '../../atoms/Typography';
 import { NumberInput, RangeInput } from '../../atoms/Input';
+import { StyledRadiogroup } from '../../atoms/Radiogroup';
 import Button from '../../atoms/Button';
 import Roll from '../../../services/dice';
 
@@ -18,6 +19,7 @@ export default class DiceRoller extends Component {
       dice: 1,
       target: 7,
       autosuccesses: 0,
+      stunt: 0,
       rollHistory: [],
     };
   }
@@ -30,12 +32,16 @@ export default class DiceRoller extends Component {
 
   handleChange = field => (e) => {
     const value = get(e, 'target.value', e);
+    console.log(field, value);
     const payload = {};
     switch (field) {
       case 'autosuccesses':
       case 'target':
       case 'dice':
         payload[field] = Number(value);
+        break;
+      case 'stunt':
+        payload[field] = Number(value) === this.state.stunt ? 0 : Number(value);
         break;
       default:
         payload[field] = value;
@@ -56,8 +62,25 @@ export default class DiceRoller extends Component {
       <DiceRollerWrapper>
         <Caption>number of dice</Caption>
         <NumberInput value={this.state.dice} onChange={this.handleChange('dice')} />
-        <NumberInput value={this.state.autosuccesses} onChange={this.handleChange('autosuccesses')} />
-        <RangeInput min="1" max="10" value={this.state.target} onChange={this.handleChange('target')} />
+        <NumberInput
+          value={this.state.autosuccesses}
+          onChange={this.handleChange('autosuccesses')}
+        />
+        <RangeInput
+          min="1"
+          max="10"
+          value={this.state.target}
+          onChange={this.handleChange('target')}
+        />
+        <Caption>Stunt</Caption>
+        <StyledRadiogroup
+          items={map(['One', 'Two', 'Three'], (label, i) => ({
+            label,
+            value: i + 1,
+            checked: this.state.stunt === i + 1,
+          }))}
+          onClick={this.handleChange('stunt')}
+        />
         <Button onClick={this.rollDice}>Roll</Button>
         <Caption>Roll History:</Caption>
         {this.renderRollHistory()}
