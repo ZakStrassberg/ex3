@@ -9,7 +9,7 @@ const Radio = styled.input.attrs({ type: 'radio' })``;
 const Radiogroup = ({ className, name, items, onClick }) => (
   <RadiogroupWrapper className={className}>
     {items.map(({ label, checked = false, value = label }) => (
-      <Label key={`${name}-${label}`}>
+      <Label key={`${name}-${label}`} className={checked ? 'active' : null}>
         <span>{label}</span>
         <Radio name={name} value={value} checked={checked} onClick={onClick} />
       </Label>
@@ -38,10 +38,12 @@ export default Radiogroup;
 
 export const StyledRadiogroup = styled(Radiogroup)`
   display: flex;
+  box-sizing: border-box;
   input {
     display: none;
   }
   label {
+    box-sizing: border-box;
     flex: 0 0 33%;
     // flex: 0 0 auto;
     justify-content: center;
@@ -49,9 +51,6 @@ export const StyledRadiogroup = styled(Radiogroup)`
     display: inline-flex;
     background: red;
     padding: 4px 2px 4px 2px;
-    &:hover {
-      background: blue;
-    }
     &:first-child {
       padding-left: 4px;
       border-top-left-radius: 3px;
@@ -61,6 +60,12 @@ export const StyledRadiogroup = styled(Radiogroup)`
       padding-right: 4px;
       border-top-right-radius: 3px;
       border-bottom-right-radius: 3px;
+    }
+    &.active {
+      background: yellow;
+    }
+    &:hover {
+      background: blue;
     }
   }
 `;
