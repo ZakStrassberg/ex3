@@ -1,10 +1,9 @@
+import { map } from 'lodash';
+import React, { PureComponent } from 'react';
+
 import { storiesOf } from '@storybook/react';
 
-import Radiogroup from './';
-import { map } from 'lodash';
-
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import Radiogroup, { StyledRadiogroup } from './';
 
 export default class RadiogroupStateWrapper extends PureComponent {
   static propTypes = {};
@@ -50,11 +49,23 @@ export default class RadiogroupStateWrapper extends PureComponent {
 
 storiesOf('Common.molecules.Radiogroup', module)
   .add('default', () => (
-    <Radiogroup
-      name="test"
-      label="Radiogroup"
-      items={[{ label: 'one', checked: true }, { label: 'Two', checked: false }]}
-      onClick={({ target, target: { value } }) => console.log(value, target)}
-    />
+    <div>
+      <Radiogroup
+        name="test"
+        label="Radiogroup"
+        items={[
+          { label: 'one', checked: true },
+          { label: 'Two', checked: false },
+          { label: 'three', checked: false },
+        ]}
+        onClick={({ target, target: { value } }) => console.log(value, target)}
+      />
+      <StyledRadiogroup
+        name="test"
+        label="Radiogroup"
+        items={[{ label: 'one', checked: true }, { label: 'Two', checked: false },       { label: 'three', checked: false },]}
+        onClick={({ target, target: { value } }) => console.log(value, target)}
+      />
+    </div>
   ))
   .add('editable', () => <RadiogroupStateWrapper />);

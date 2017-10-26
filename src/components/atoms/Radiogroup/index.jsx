@@ -1,6 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import styled from 'styled-components';
+import { noop } from 'lodash';
 
 const RadiogroupWrapper = styled.form``;
 const Label = styled.label``;
@@ -21,13 +22,45 @@ Radiogroup.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
+      value: PropTypes.string,
       checked: PropTypes.bool,
     })
   ).isRequired,
   className: PropTypes.string,
+  onClick: PropTypes.func,
 };
 Radiogroup.defaultProps = {
   className: '',
+  onClick: noop,
 };
 
 export default Radiogroup;
+
+export const StyledRadiogroup = styled(Radiogroup)`
+  display: flex;
+  input {
+    display: none;
+  }
+  label {
+    flex: 0 0 33%;
+    // flex: 0 0 auto;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+    background: red;
+    padding: 4px 2px 4px 2px;
+    &:hover {
+      background: blue;
+    }
+    &:first-child {
+      padding-left: 4px;
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+    }
+    &:last-child {
+      padding-right: 4px;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+  }
+`;
