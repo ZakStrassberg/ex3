@@ -44,7 +44,7 @@ export const StyledRadiogroup = styled(Radiogroup)`
   }
   label {
     box-sizing: border-box;
-    flex: 0 0 33%;
+    flex: 0 0 ${({ items }) => `${100 / items.length}%`};
     // flex: 0 0 auto;
     justify-content: center;
     align-items: center;
