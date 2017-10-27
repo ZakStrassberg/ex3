@@ -1,4 +1,4 @@
-import { map, get } from 'lodash';
+import { map, get, times, includes, without, isNumber } from 'lodash';
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
@@ -19,20 +19,25 @@ export default class DiceRoller extends Component {
       dice: 1,
       target: 7,
       autosuccesses: 0,
+      double: [10],
+      reroll: [],
       stunt: 0,
       rollHistory: [],
     };
   }
 
   rollDice = () => {
-    const roller = new Roll(this.state);
+    const roller = new Roll({
+      ...this.state,
+      double: new Set(this.state.double),
+      reroll: new Set(this.state.reroll),
+    });
     const roll = roller.roll();
     this.setState({ rollHistory: [roll, ...this.state.rollHistory] });
   };
 
   handleChange = field => (e) => {
     const value = get(e, 'target.value', e);
-    console.log(field, value);
     const payload = {};
     switch (field) {
       case 'autosuccesses':
@@ -42,6 +47,12 @@ export default class DiceRoller extends Component {
         break;
       case 'stunt':
         payload[field] = Number(value) === this.state.stunt ? 0 : Number(value);
+        break;
+      case 'double':
+      case 'reroll':
+        payload[field] = includes(this.state[field], Number(value))
+          ? without(this.state[field], Number(value))
+          : [...this.state[field], Number(value)];
         break;
       default:
         payload[field] = value;
@@ -71,6 +82,24 @@ export default class DiceRoller extends Component {
           max="10"
           value={this.state.target}
           onChange={this.handleChange('target')}
+        />
+        <Caption>Double</Caption>
+        <StyledRadiogroup
+          items={times(10, i => ({
+            label: i + 1,
+            value: i + 1,
+            checked: includes(this.state.double, i + 1),
+          }))}
+          onClick={this.handleChange('double')}
+        />
+        <Caption>Reroll</Caption>
+        <StyledRadiogroup
+          items={times(10, i => ({
+            label: i + 1,
+            value: i + 1,
+            checked: includes(this.state.reroll, i + 1),
+          }))}
+          onClick={this.handleChange('reroll')}
         />
         <Caption>Stunt</Caption>
         <StyledRadiogroup
