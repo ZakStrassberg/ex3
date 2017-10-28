@@ -37,14 +37,14 @@ describe('dice roller', () => {
 
   describe('doubles', () => {
     it('can double dice', () => {
-      const roller = new Roll({ double: new Set([7, 8, 9]) });
+      const roller = new Roll({ double: new Set([7, 8, 9, 10]) });
       expect(roller.countSuccesses([7])).toBe(2);
       expect(roller.countSuccesses([8])).toBe(2);
       expect(roller.countSuccesses([9])).toBe(2);
       expect(roller.countSuccesses([10])).toBe(2);
     });
     it('can turn off double 10s', () => {
-      const roller = new Roll({ double: new Set([7, 8, 9]), doubleTen: false });
+      const roller = new Roll({ double: new Set([7, 8, 9]) });
       expect(roller.countSuccesses([7])).toBe(2);
       expect(roller.countSuccesses([8])).toBe(2);
       expect(roller.countSuccesses([9])).toBe(2);

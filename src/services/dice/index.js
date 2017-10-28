@@ -1,17 +1,14 @@
-import { random, times, flatMapDeep, reduce, every, get, map } from 'lodash';
+import { random, times, flatMapDeep, reduce, every } from 'lodash';
 
 export default class Roll {
   constructor(config = {}) {
-    const doubleTen = get(config, 'doubleTen', true);
-    const double = get(config, 'double', new Set());
     this.config = {
-      doubleTen,
       dice: 1,
+      double: new Set([10]),
       reroll: new Set(),
       target: 7,
       autosuccesses: 0,
       ...config,
-      double: doubleTen ? new Set([...double.values(), 10]) : new Set(double.values()),
     };
     if (every(times(10, n => this.config.reroll.has(n + 1)))) {
       throw Error({ success: false, error: true, message: "You can't reroll every face" });
