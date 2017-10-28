@@ -22,19 +22,21 @@ const Dot = styled.input.attrs({ type: 'checkbox' })`
 
 export default class Dotscale extends PureComponent {
   static propTypes = {
-    label: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     score: PropTypes.number.isRequired,
-    displayLabel: PropTypes.bool,
+    label: PropTypes.string,
     className: PropTypes.string,
     min: PropTypes.number,
     max: PropTypes.number,
+    square: PropTypes.bool,
   };
 
   static defaultProps = {
-    displayLabel: true,
+    label: null,
     className: '',
     min: 0,
     max: 5,
+    square: false,
   };
 
   constructor(props) {
@@ -54,15 +56,16 @@ export default class Dotscale extends PureComponent {
   };
 
   render() {
-    const { label, score: propScore, displayLabel, className, max } = this.props;
+    const { label, score: propScore, className, max, square, name } = this.props;
     const score = this.state.score ? this.state.score : propScore;
+    const [unfilled, filled] = square ? ['◽', '◾'] : ['○', '●'];
     return (
       <DotscaleWrapper className={className}>
-        {displayLabel ? <span>{label}</span> : null}
+        {label ? <span>{label}</span> : null}
         <DotsWrapper>
           {times(max, idx => (
-            <DotLabel key={`dotscale-${label}-${idx}`} htmlFor={`dotscale-${label}-${idx}`}>
-              {idx < score ? '●' : '○'}
+            <DotLabel key={`dotscale-${label}-${idx}`} htmlFor={`dotscale-${name}-${idx}`}>
+              {idx < score ? filled : unfilled}
               <Dot
                 name={`dotscale-${label}-${idx}`}
                 id={`dotscale-${label}-${idx}`}
