@@ -1,4 +1,4 @@
-import { map, get, times, includes, without, isNumber } from 'lodash';
+import { map, get, times, includes, without } from 'lodash';
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
