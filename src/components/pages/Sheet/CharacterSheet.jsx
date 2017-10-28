@@ -1,54 +1,116 @@
-import React, { PureComponent } from 'react';
+import { map } from 'lodash';
 import PropTypes from 'prop-types';
-import styled from 'styled-components'
+import React, { PureComponent } from 'react';
+import styled from 'styled-components';
+
+import { ATTRIBUTE_GROUPS, ABILITIES } from '../../../store/sheet/constants';
+import { Caption as UnstyledCaption } from '../../atoms/Typography';
+import Dotscale from '../../molecules/Dotscale';
+import Textarea from '../../atoms/Textarea';
 
 const Wrapper = styled.section`
   max-width: 1024px;
   margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  > * {
+    flex: 0 0 100%;
+  }
+`;
+const Caption = styled(UnstyledCaption)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-weight: bold;
+  letter-spacing: 1px;
+  // margin-left: 6px;
+  // margin-right: 6px;
+  &:before {
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    height: 3px;
+    background: yellow;
+    content: '';
+  }
 `;
 const Header = styled.header``;
 const Sheet = styled.article``;
-const Attributes = styled.div``;
-const Abilities = styled.div``;
+const Attributes = styled.div`
+  display: flex;
+`;
+const Abilities = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const FlexBox = styled.div`
+  flex: 0 0 ${({ columns = 1 }) => `${100 / columns}%`};
+`;
+const Row = styled.div`
+  display: flex;
+`;
+const Willpower = styled.div``;
+const LimitBreak = styled.div``;
 
 export default class CharacterSheet extends PureComponent {
-
   static propTypes = {
     character: PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string,
-    })
+    }),
   };
 
   constructor(props) {
     super(props);
 
-    this.state = {
-
-    };
+    this.state = {};
   }
 
   render() {
     return (
       <Wrapper>
-        <Header>
-          name
-          player
-          caste
-          concept
-          anima
-          supernal
-        </Header>
+        <Header>name player caste concept anima supernal</Header>
         <Sheet>
+          <Caption style={{ marginTop: '20px' }}>Attributes</Caption>
           <Attributes>
-            hi
+            {map(ATTRIBUTE_GROUPS, group => (
+              <FlexBox columns={3}>
+                {map(group, label => (
+                  <Dotscale name={`attribute-${label}`} label={label} score={2} min={1} />
+                ))}
+              </FlexBox>
+            ))}
           </Attributes>
-          <Abilities>
-            hi
-          </Abilities>
+          <Row style={{ marginTop: '20px' }}>
+            <FlexBox columns={2}>
+              <Caption>Abilities</Caption>
+              <Abilities>
+                {map(ABILITIES, label => (
+                  <FlexBox>
+                    <Dotscale name={`ability-${label}`} label={label} score={2} />
+                  </FlexBox>
+                ))}
+              </Abilities>
+            </FlexBox>
+            <FlexBox columns={2}>test</FlexBox>
+          </Row>
+          <Willpower>
+            <Caption>Willpower</Caption>
+            <Dotscale name="totalWillpower" max={10} score={3} />
+            <Dotscale name="availableWillpower" max={10} score={1} square />
+          </Willpower>
+          <LimitBreak>
+            <Caption>Limit Break</Caption>
+            <Dotscale name="limit" max={10} score={4} square />
+            <Caption>Limit Trigger</Caption>
+            <Textarea />
+          </LimitBreak>
         </Sheet>
       </Wrapper>
     );
   }
-
 }
