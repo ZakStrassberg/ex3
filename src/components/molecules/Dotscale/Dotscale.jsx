@@ -29,6 +29,7 @@ export default class Dotscale extends PureComponent {
     min: PropTypes.number,
     max: PropTypes.number,
     square: PropTypes.bool,
+    onChange: PropTypes.func,
   };
 
   static defaultProps = {
@@ -37,6 +38,9 @@ export default class Dotscale extends PureComponent {
     min: 0,
     max: 5,
     square: false,
+    onChange: (...props) => {
+      console.log(props);
+    },
   };
 
   constructor(props) {
@@ -53,6 +57,7 @@ export default class Dotscale extends PureComponent {
     this.setState({
       score: score === 1 && idx === 1 && this.props.min === 0 ? 0 : idx,
     });
+    this.props.onChange(idx);
   };
 
   render() {
@@ -64,7 +69,11 @@ export default class Dotscale extends PureComponent {
         {label ? <span>{label}</span> : null}
         <DotsWrapper>
           {times(max, idx => (
-            <DotLabel key={`dotscale-${label}-${idx}`} htmlFor={`dotscale-${name}-${idx}`}>
+            <DotLabel
+              key={`dotscale-${label}-${idx}`}
+              htmlFor={`dotscale-${name}-${idx}`}
+              onClick={this.handleChange(idx + 1)}
+            >
               {idx < score ? filled : unfilled}
               <Dot
                 name={`dotscale-${label}-${idx}`}

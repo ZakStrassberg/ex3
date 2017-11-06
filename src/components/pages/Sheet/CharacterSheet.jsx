@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { ATTRIBUTE_GROUPS, ABILITIES } from '../../../store/sheet/constants';
 import { Caption as UnstyledCaption } from '../../atoms/Typography';
 import Dotscale from '../../molecules/Dotscale';
+import Merits from '../../molecules/Merits';
 import Textarea from '../../atoms/Textarea';
 
 const Wrapper = styled.section`
@@ -96,19 +97,21 @@ export default class CharacterSheet extends PureComponent {
                 ))}
               </Abilities>
             </FlexBox>
-            <FlexBox columns={2}>test</FlexBox>
+            <FlexBox columns={2}>
+              <Merits />
+              <Willpower>
+                <Caption>Willpower</Caption>
+                <Dotscale name="totalWillpower" max={10} score={3} />
+                <Dotscale name="availableWillpower" max={10} score={1} square />
+              </Willpower>
+              <LimitBreak>
+                <Caption>Limit Break</Caption>
+                <Dotscale name="limit" max={10} score={4} square />
+                <Caption>Limit Trigger</Caption>
+                <Textarea />
+              </LimitBreak>
+            </FlexBox>
           </Row>
-          <Willpower>
-            <Caption>Willpower</Caption>
-            <Dotscale name="totalWillpower" max={10} score={3} />
-            <Dotscale name="availableWillpower" max={10} score={1} square />
-          </Willpower>
-          <LimitBreak>
-            <Caption>Limit Break</Caption>
-            <Dotscale name="limit" max={10} score={4} square />
-            <Caption>Limit Trigger</Caption>
-            <Textarea />
-          </LimitBreak>
         </Sheet>
       </Wrapper>
     );
