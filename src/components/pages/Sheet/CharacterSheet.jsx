@@ -4,6 +4,7 @@ import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 
 import { ATTRIBUTE_GROUPS, ABILITIES } from '../../../store/sheet/constants';
+import { FlexBox, Row } from '../../atoms/Layout';
 import { Caption as UnstyledCaption } from '../../atoms/Typography';
 import Dotscale from '../../molecules/Dotscale';
 import Merits from '../../molecules/Merits';
@@ -47,12 +48,6 @@ const Attributes = styled.div`
 const Abilities = styled.div`
   display: flex;
   flex-direction: column;
-`;
-const FlexBox = styled.div`
-  flex: 0 0 ${({ columns = 1 }) => `${100 / columns}%`};
-`;
-const Row = styled.div`
-  display: flex;
 `;
 const Willpower = styled.div``;
 const LimitBreak = styled.div``;
