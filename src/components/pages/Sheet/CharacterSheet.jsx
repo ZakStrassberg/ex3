@@ -7,8 +7,11 @@ import { ATTRIBUTE_GROUPS, ABILITIES } from '../../../store/sheet/constants';
 import { FlexBox, Row } from '../../atoms/Layout';
 import { Caption as UnstyledCaption } from '../../atoms/Typography';
 import Dotscale from '../../molecules/Dotscale';
+import Essence from '../../molecules/Essence';
+import Intimacies from '../../molecules/Intimacies/Intimacies';
 import Merits from '../../molecules/Merits';
 import Textarea from '../../atoms/Textarea';
+import Weapons from '../../molecules/Weapons';
 
 const Wrapper = styled.section`
   max-width: 1024px;
@@ -105,8 +108,11 @@ export default class CharacterSheet extends PureComponent {
                 <Caption>Limit Trigger</Caption>
                 <Textarea />
               </LimitBreak>
+              <Essence />
             </FlexBox>
           </Row>
+          <Weapons />
+          <Intimacies />
         </Sheet>
       </Wrapper>
     );
